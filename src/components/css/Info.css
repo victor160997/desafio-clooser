@@ -1,0 +1,7 @@
+.body-info {
+  background-color: #4A0D77;
+  border-radius: 0 24px 0 0;
+  display: flex;
+  justify-content: center;
+  width: 500px;
+}

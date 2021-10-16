@@ -1,0 +1,75 @@
+.body-profile {
+  display: flex;
+  flex-direction: column;
+  margin-top: 194px;
+}
+
+.image-name-role {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.image-name-role img {
+  border: solid white 3.5px;
+  border-radius: 100px;
+  height: 120px;
+  width: 120px;
+  margin: 26px;
+  margin-bottom: 10px;
+}
+
+.profile-name {
+  color: white;
+  font-family: 'Mulish', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 23px;
+}
+
+.profile-role {
+  color: white;
+  font-family: 'Mulish', sans-serif;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.physical-profile {
+  color: white;
+  font-family: 'Mulish', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.physical-profile span {
+  margin: 0 7px 0 7px;
+}
+
+.time-closeer {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-family: 'Mulish', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  margin-top: 7px;
+}
+
+.time-closeer span {
+  margin: 0 5px 0 5px;
+}
+
+.time-cloose svg {
+  width: 15.13px;
+  height: 14.17px;
+}
