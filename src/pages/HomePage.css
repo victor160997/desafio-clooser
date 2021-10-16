@@ -4,3 +4,12 @@
   width: 100vw;
   height: 100vh;
 }
+
+.logo {
+  position: absolute;
+  width: 103px;
+  height: 33.34px;
+  left: 1323px;
+  top: 16px;
+}
+ 

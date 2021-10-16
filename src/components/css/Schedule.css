@@ -1,0 +1,42 @@
+.body-schedule {
+  position: absolute;
+  width: 696px;
+  height: 163px;
+  left: 627px;
+  top: 327px;
+  background: #4A0D77;
+  border-radius: 8px;
+}
+
+.eli-5 {
+  width: 14px;
+  height: 14px;
+  background: #ECC561;
+  border: 1px solid #EFD89E;
+  border-radius: 100px;
+  box-sizing: border-box;
+}
+
+.eli-4 {
+  width: 14px;
+  height: 14px;
+  border-radius: 100px;
+  background: #EB5F5F;
+  border: 1px solid #FD7E7E;
+  box-sizing: border-box;
+}
+
+.eli-3 {
+  width: 14px;
+  height: 14px;
+  border-radius: 100px;
+  background: #02E2BD;
+  border: 1px solid #61F4D7;
+  box-sizing: border-box;
+}
+
+.icons {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 616px 0 22px;
+}

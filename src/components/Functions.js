@@ -31,3 +31,25 @@ export function renderComponentsProfile(worker) {
     </div>
   );
 }
+
+export function renderIcons() {
+  return (
+    <div className="icons">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="eli-5">
+        <circle cx="7" cy="7" r="6.5" fill="#ECC561" stroke="#EFD89E"/>
+      </svg>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="eli-4">
+        <circle cx="7" cy="7" r="6.5" fill="#EB5F5F" stroke="#FD7E7E"/>
+      </svg>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="eli-3">
+        <circle cx="7" cy="7" r="6.5" fill="#02E2BD" stroke="#61F4D7"/>
+      </svg>
+    </div>
+  );
+}
+
+export function renderWorks(schedule) {
+  if (schedule !== '' && schedule.length > 0) {
+    return schedule.map((work) => <p>{ work.minute }</p>)
+  }
+}
