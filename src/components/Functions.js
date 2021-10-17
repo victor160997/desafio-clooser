@@ -1,10 +1,18 @@
 import React from 'react';
 
-function calculateTime(time) {
-  return time;
+function calculateTime(date) {
+  const data = new Date();
+  const dataInit = `${date}T00:00:00-03:00`;
+  const init = new Date(dataInit);
+  const tempCloseer = (data - init)/1000/60/60/24/365;
+  const num = tempCloseer - parseInt(tempCloseer);
+  return (num + parseInt(num * 10) / 10).toFixed(1);
 }
 
 export function renderComponentsProfile(worker) {
+  const timeInCloseerArray = worker.created_at.split('');
+  let timeInCloseer = [];
+  timeInCloseerArray.map((c, i) => i < 10 && timeInCloseer.push(c));
   return (
     <div className="body-profile">
       <div className="image-name-role">
@@ -26,24 +34,49 @@ export function renderComponentsProfile(worker) {
         <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7.56251 0C11.7393 0 15.125 3.17192 15.125 7.08333C15.125 10.9948 11.7393 14.1667 7.56251 14.1667C3.38574 14.1667 0 10.9948 0 7.08333C0 3.17192 3.38574 0 7.56251 0ZM7.56251 1.18079C4.08754 1.18079 1.26067 3.82854 1.26067 7.08333C1.26067 10.3381 4.08754 12.9859 7.56251 12.9859C11.0375 12.9859 13.8643 10.3381 13.8643 7.08333C13.8643 3.82854 11.0375 1.18079 7.56251 1.18079ZM6.99532 2.83333C7.28232 2.83333 7.51978 3.03332 7.55729 3.29252L7.56251 3.36458V7.08333H10.0203C10.3334 7.08333 10.5875 7.32133 10.5875 7.61458C10.5875 7.8834 10.374 8.10581 10.0972 8.14095L10.0203 8.14583H6.99532C6.70832 8.14583 6.47086 7.94587 6.43335 7.68662L6.42813 7.61458V3.36458C6.42813 3.07133 6.68223 2.83333 6.99532 2.83333Z" fill="white"/>
         </svg>
-        <span>{`Tempo na Closeer: ${ calculateTime(worker.created_at) }`}</span>
+        <span>{`Tempo na Closeer: ${ calculateTime(timeInCloseer.join('')) } anos`}</span>
       </div>
     </div>
   );
 }
 
+function renderBaloon(e) {
+  const baloon = document.querySelector('.clear');
+  const type = e.target.className.baseVal;
+  if (type === 'eli-5') {
+    baloon.innerText = 'Próximo do início';
+  }
+  if (type === 'eli-4') {
+    baloon.innerText = 'Já iniciou';
+  }
+  if (type === 'eli-3') {
+    baloon.innerText = 'Para o futuro';
+  }
+  return baloon.className = 'view';
+}
+
+function clearBaloon(e) {
+  const baloon = document.querySelector('.view');
+  baloon.className = 'clear';
+}
+
 export function renderIcons() {
   return (
-    <div className="icons">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="eli-5">
-        <circle cx="7" cy="7" r="6.5" fill="#ECC561" stroke="#EFD89E"/>
-      </svg>
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="eli-4">
-        <circle cx="7" cy="7" r="6.5" fill="#EB5F5F" stroke="#FD7E7E"/>
-      </svg>
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="eli-3">
-        <circle cx="7" cy="7" r="6.5" fill="#02E2BD" stroke="#61F4D7"/>
-      </svg>
+    <div>
+      <div>
+        <p className="clear"></p>
+      </div>
+      <div className="icons">
+        <svg name="yellow" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="eli-5" onMouseOver={ (e) => renderBaloon(e) } onMouseOut={ (e) => clearBaloon(e) }>
+          <circle cx="7" cy="7" r="6.5" fill="#ECC561" stroke="#EFD89E"/>
+        </svg>
+        <svg name="red" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="eli-4" onMouseOver={ (e) => renderBaloon(e) } onMouseOut={ (e) => clearBaloon(e) }>
+          <circle cx="7" cy="7" r="6.5" fill="#EB5F5F" stroke="#FD7E7E"/>
+        </svg>
+        <svg name="green "width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="eli-3" onMouseOver={ (e) => renderBaloon(e) } onMouseOut={ (e) => clearBaloon(e) }>
+          <circle cx="7" cy="7" r="6.5" fill="#02E2BD" stroke="#61F4D7"/>
+        </svg>
+      </div>
     </div>
   );
 }
@@ -89,7 +122,8 @@ export function renderTime() {
   const data = new Date();
   const  hr = data.getHours();
   const min = data.getMinutes();
-  const clock = `${hr}:${min > 9 ? min : `0${min}`}`;
+  const sec = data.getSeconds();
+  const clock = `${hr}:${min > 9 ? min : `0${min}`}:${sec > 9 ? sec : `0${sec}`}`;
   return clock;
 }
 
@@ -107,14 +141,14 @@ function checkIcon(work) {
   if (0 > compare && compare > -12) {
     return (
       <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14.2 7C14.2 10.5671 11.1564 13.5 7.35 13.5C3.54358 13.5 0.5 10.5671 0.5 7C0.5 3.43286 3.54358 0.5 7.35 0.5C11.1564 0.5 14.2 3.43286 14.2 7Z" fill="#02E2BD" stroke="#61F4D7"/>
-      </svg>
+        <path d="M14.4239 7C14.4239 10.5602 11.3375 13.5 7.46193 13.5C3.58638 13.5 0.5 10.5602 0.5 7C0.5 3.43977 3.58638 0.5 7.46193 0.5C11.3375 0.5 14.4239 3.43977 14.4239 7Z" fill="#ECC561" stroke="#EFD89E"/>
+    </svg>
     );
   } 
   if (compare <= -12) {
     return (
       <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14.4239 7C14.4239 10.5602 11.3375 13.5 7.46193 13.5C3.58638 13.5 0.5 10.5602 0.5 7C0.5 3.43977 3.58638 0.5 7.46193 0.5C11.3375 0.5 14.4239 3.43977 14.4239 7Z" fill="#ECC561" stroke="#EFD89E"/>
+        <path d="M14.2 7C14.2 10.5671 11.1564 13.5 7.35 13.5C3.54358 13.5 0.5 10.5671 0.5 7C0.5 3.43286 3.54358 0.5 7.35 0.5C11.1564 0.5 14.2 3.43286 14.2 7Z" fill="#02E2BD" stroke="#61F4D7"/>
       </svg>
     );
   }

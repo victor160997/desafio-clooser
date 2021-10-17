@@ -33,7 +33,7 @@ export default class HeaderLeft extends Component {
       <div className="body-HeaderLeft">
         { day && mounth && year && clock ?
         <span>{`Hoje - ${day} de ${mounth} de ${year} - ${clock}`}</span> :
-        <span>loading...</span> }
+        <img src="https://i.gifer.com/ZZ5H.gif" alt="loading" width="50px"/> }
       </div>
     )
   }

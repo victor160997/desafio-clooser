@@ -1,3 +1,15 @@
+@media screen and (min-width: 320px) and (max-width: 800px) {
+  .body-info {
+    position: absolute;
+    width: 320px;
+    height: 132px;
+    left: 0px;
+    top: 0px;
+    background: #4A0D77;
+    border-radius: 0px 0px 24px 0px;
+  }
+}
+
 .body-info {
   background-color: #4A0D77;
   border-radius: 0 24px 0 0;

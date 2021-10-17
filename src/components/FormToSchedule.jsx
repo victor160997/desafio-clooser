@@ -35,9 +35,14 @@ class FormToSchedule extends Component {
       }
     }
     if (year !== Number(date.split('-')[0])) {
-      return global.alert('A agenda só aceitas jobs no ano corrente!');
+      return global.alert('A agenda só aceita jobs no ano corrente!');
     }
-    return addWork({ date, hour, minute });
+    addWork({ date, hour, minute });
+    return this.setState({
+      date: '',
+      hour: '',
+      minute: '',
+    });
   }
 
   render() {
@@ -51,6 +56,7 @@ class FormToSchedule extends Component {
             name="date"
             onChange={ (e) => this.handleChange(e) }
             placeholder="Selecione uma data..."
+            value={ date }
           />  
         </label>
         <label htmlFor="hour">
@@ -62,6 +68,7 @@ class FormToSchedule extends Component {
             placeholder="Hora"
             max="23"
             min="1"
+            value={ hour }
           />  
         </label>
         <label htmlFor="minute">
@@ -73,6 +80,7 @@ class FormToSchedule extends Component {
             placeholder="Minuto"
             max="59"
             min="1"
+            value={ minute }
           />  
         </label>
         <svg 

@@ -14,7 +14,7 @@ export default async function getWorkerInfo() {
       "shoe": "37",
       "role": "Exorcista Jujutsu",
       "created_at": "2019-10-26T14:40:13.365Z"
-   }
+    }
   }
 }
 

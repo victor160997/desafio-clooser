@@ -4,15 +4,13 @@ import './css/Profile.css';
 import { renderComponentsProfile } from './Functions';
 
 class Profile extends Component {
-  /* constructor(props) {
-    super(props);
-  } */
 
   render() {
     const { worker } = this.props;
     return (
       <div>
-        { worker ? renderComponentsProfile(worker) : <span>Loading...</span> }
+        { worker ? renderComponentsProfile(worker)
+        : <img src="https://i.gifer.com/ZZ5H.gif" alt="loading" width="50px"/> }
       </div>
     )
   }
