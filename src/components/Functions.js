@@ -48,8 +48,122 @@ export function renderIcons() {
   );
 }
 
+export function renderData() {
+  const moment = new Date();
+  return {
+    day: moment.getDate(),
+    mounth: moment.getMonth() + 1,
+    year: moment.getFullYear(),
+  };
+}
+
+export function returnMounth(n) {
+  if(n === 1) {
+    return 'Janeiro';
+  } else if (n === 2) {
+    return 'Fevereiro';
+  } else if (n === 3) {
+    return 'Março';
+  } else if (n === 4) {
+    return 'Abril';
+  } else if (n === 5) {
+    return 'Maio';
+  } else if (n === 6) {
+    return 'Junho';
+  } else if (n === 7) {
+    return 'Julho';
+  } else if (n === 8) {
+    return 'Agosto';
+  } else if (n === 9) {
+    return 'Setembro';
+  } else if (n === 10) {
+    return 'Outubro';
+  } else if (n === 11) {
+    return 'Novembro';
+  } else {
+    return 'Dezembro';
+  }
+}
+
+export function renderTime() {
+  const data = new Date();
+  const  hr = data.getHours();
+  const min = data.getMinutes();
+  const clock = `${hr}:${min > 9 ? min : `0${min}`}`;
+  return clock;
+}
+
+function checkIcon(work) {
+  const { date, hour, minute } = work;
+  const dataJob = `${date}T${hour}:${minute}:00-03:00`;
+  const compare = (new Date() - new Date(dataJob))/ 1000 / 60 / 60;
+  if (compare >= 0) {
+    return (
+      <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14.2 7C14.2 10.5671 11.1564 13.5 7.35 13.5C3.54358 13.5 0.5 10.5671 0.5 7C0.5 3.43286 3.54358 0.5 7.35 0.5C11.1564 0.5 14.2 3.43286 14.2 7Z" fill="#EB5F5F" stroke="#FD7E7E"/>
+      </svg>
+    );
+  } 
+  if (0 > compare && compare > -12) {
+    return (
+      <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14.2 7C14.2 10.5671 11.1564 13.5 7.35 13.5C3.54358 13.5 0.5 10.5671 0.5 7C0.5 3.43286 3.54358 0.5 7.35 0.5C11.1564 0.5 14.2 3.43286 14.2 7Z" fill="#02E2BD" stroke="#61F4D7"/>
+      </svg>
+    );
+  } 
+  if (compare <= -12) {
+    return (
+      <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14.4239 7C14.4239 10.5602 11.3375 13.5 7.46193 13.5C3.58638 13.5 0.5 10.5602 0.5 7C0.5 3.43977 3.58638 0.5 7.46193 0.5C11.3375 0.5 14.4239 3.43977 14.4239 7Z" fill="#ECC561" stroke="#EFD89E"/>
+      </svg>
+    );
+  }
+}
+
+function renderDayWork(work) {
+  const { date, hour, minute } = work;
+  const stringMounth = returnMounth(Number(date.split('-')[1])).split('');
+  const array = [stringMounth[0], stringMounth[1], stringMounth[2]]
+  const mounth = array.join('');
+  const day = date.split('-')[2];
+  const icon = checkIcon(work);
+  console.log(icon);
+  return (
+    <div className="date-job">
+      <span className="icon-date">{ icon }</span>
+      <span className="text-date">{ ` ${day}/${mounth} das ${hour}h${minute} ás Xh` }</span>
+    </div>
+  );
+}
+
 export function renderWorks(schedule) {
   if (schedule !== '' && schedule.length > 0) {
-    return schedule.map((work) => <p>{ work.minute }</p>)
+    return (
+      <div className="work-dates">
+        { schedule.map((work) => {
+          return <div>{ renderDayWork(work) }</div>;
+        }) }
+      </div>
+    );
+  }
+}
+
+
+export function checkCoincidence(dateJob, arraySchedule) {
+  const coincidenceTime = arraySchedule.some((schedule) => schedule.date === dateJob.date
+  && schedule.hour === dateJob.hour
+  && schedule.minute === dateJob.minute);
+  return coincidenceTime;
+}
+
+export function checkInputs({ date, hour, minute }) {
+  if (date === '') {
+    return false;
+  }
+  if (hour === '' || hour < 1 || hour > 23) {
+    return false;
+  }
+  if (minute === '' || minute < 1 || minute > 59) {
+    return false;
   }
 }

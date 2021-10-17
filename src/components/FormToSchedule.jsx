@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { addWorkAction } from './redux/actions';
 import './css/FormToSchedule.css';
+import { checkCoincidence, checkInputs, renderData } from './Functions';
 
 class FormToSchedule extends Component {
   constructor(props) {
@@ -21,9 +22,22 @@ class FormToSchedule extends Component {
     this.setState({ [target.name]: target.value });
   }
 
-  handleSubmit(info) {
-    const { addWork } = this.props;
-    addWork(info);
+  handleSubmit({ date, hour, minute }) {
+    const { addWork, schedule } = this.props;
+    const { year } = renderData();
+    if (checkInputs({ date, hour, minute }) === false) {
+      return global.alert('Data, hora ou minuto com valor inválido!');
+    }
+    if (schedule !== '' && schedule.length > 0) {
+      const coincidence = checkCoincidence({ date, hour, minute }, schedule);
+      if (coincidence === true) {
+        return global.alert('Você já tem um job marcado nessa data e horário');
+      }
+    }
+    if (year !== Number(date.split('-')[0])) {
+      return global.alert('A agenda só aceitas jobs no ano corrente!');
+    }
+    return addWork({ date, hour, minute });
   }
 
   render() {
@@ -33,7 +47,7 @@ class FormToSchedule extends Component {
         <label htmlFor="date">
           <input
             className="input-date"
-            type="text"
+            type="date"
             name="date"
             onChange={ (e) => this.handleChange(e) }
             placeholder="Selecione uma data..."
@@ -46,6 +60,8 @@ class FormToSchedule extends Component {
             name="hour"
             onChange={ (e) => this.handleChange(e) }
             placeholder="Hora"
+            max="23"
+            min="1"
           />  
         </label>
         <label htmlFor="minute">
@@ -55,6 +71,8 @@ class FormToSchedule extends Component {
             name="minute"
             onChange={ (e) => this.handleChange(e) }
             placeholder="Minuto"
+            max="59"
+            min="1"
           />  
         </label>
         <svg 
@@ -82,4 +100,8 @@ const mapDispatchToProps = (dispatch) => ({
   addWork: (payload) => dispatch(addWorkAction(payload)),
 });
 
-export default connect(null, mapDispatchToProps)(FormToSchedule);
+const mapStateToProps = ({ schedule: { schedule }}) => ({
+  schedule,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormToSchedule);

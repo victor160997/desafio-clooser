@@ -1,0 +1,21 @@
+.body-HeaderLeft {
+  position: absolute;
+  width: 270px;
+  height: 18px;
+  left: 13px;
+  top: 16px;
+}
+
+.body-HeaderLeft span {
+  width: 266px;
+  height: 18px;
+  left: 13px;
+  top: 16px;
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.05em;
+  color: #FFFFFF;
+}

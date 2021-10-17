@@ -40,3 +40,38 @@
   justify-content: space-between;
   margin: 16px 616px 0 22px;
 }
+
+.work-dates {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 658px;
+  height: 70px;
+  left: 649px;
+  top: 395px;
+  overflow: auto;
+  margin-top: 39px;
+  margin-left: 22px;
+}
+
+.date-job {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: max-content;
+}
+
+.icon-date {
+  margin-right: 3px;
+}
+
+.text-date {
+  width: 165.91px;
+  height: 18px;
+  font-family: Mulish;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  color: #FFFFFF;
+}
