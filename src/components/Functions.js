@@ -197,7 +197,7 @@ export function checkInputs({ date, hour, minute }) {
   if (hour === '' || hour < 1 || hour > 23) {
     return false;
   }
-  if (minute === '' || minute < 1 || minute > 59) {
+  if (minute === '' || minute < 0 || minute > 59) {
     return false;
   }
 }
