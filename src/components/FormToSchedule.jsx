@@ -37,10 +37,11 @@ class FormToSchedule extends Component {
     if (year !== Number(date.split('-')[0])) {
       return global.alert('A agenda só aceita jobs no ano corrente!');
     }
-    
+
+    const hr = hour > 9 ? hour : `0${hour}`;
     const min = minute > 9 ? minute : `0${minute}`;
 
-    addWork({ date, hour, minute: min });
+    addWork({ date, hour: hr, minute: min });
 
     return this.setState({
       date: '',
