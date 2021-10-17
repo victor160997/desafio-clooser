@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/desafio-closeer/static/css/main.342e280e.chunk.css",
+    "main.js": "/desafio-closeer/static/js/main.90900e1c.chunk.js",
+    "main.js.map": "/desafio-closeer/static/js/main.90900e1c.chunk.js.map",
+    "runtime-main.js": "/desafio-closeer/static/js/runtime-main.ae4f23b7.js",
+    "runtime-main.js.map": "/desafio-closeer/static/js/runtime-main.ae4f23b7.js.map",
+    "static/js/2.7b8642e8.chunk.js": "/desafio-closeer/static/js/2.7b8642e8.chunk.js",
+    "static/js/2.7b8642e8.chunk.js.map": "/desafio-closeer/static/js/2.7b8642e8.chunk.js.map",
+    "static/js/3.fabcbb00.chunk.js": "/desafio-closeer/static/js/3.fabcbb00.chunk.js",
+    "static/js/3.fabcbb00.chunk.js.map": "/desafio-closeer/static/js/3.fabcbb00.chunk.js.map",
+    "index.html": "/desafio-closeer/index.html",
+    "static/css/main.342e280e.chunk.css.map": "/desafio-closeer/static/css/main.342e280e.chunk.css.map",
+    "static/js/2.7b8642e8.chunk.js.LICENSE.txt": "/desafio-closeer/static/js/2.7b8642e8.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ae4f23b7.js",
+    "static/js/2.7b8642e8.chunk.js",
+    "static/css/main.342e280e.chunk.css",
+    "static/js/main.90900e1c.chunk.js"
+  ]
+}
