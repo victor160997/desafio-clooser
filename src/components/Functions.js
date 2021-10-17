@@ -165,7 +165,10 @@ function renderDayWork(work) {
   return (
     <div className="date-job">
       <span className="icon-date">{ icon }</span>
-      <span className="text-date">{ ` ${day}/${mounth} das ${hour}h${minute} ás Xh` }</span>
+      <span className="text-date">
+        { ` ${day}/${mounth} das ${hour}h${minute} ás ${(Number(hour) + 1) > 9 ? (Number(hour) + 1)
+        : `0${(Number(hour) + 1)}`}h${minute}` }
+      </span>
     </div>
   );
 }
@@ -185,8 +188,7 @@ export function renderWorks(schedule) {
 
 export function checkCoincidence(dateJob, arraySchedule) {
   const coincidenceTime = arraySchedule.some((schedule) => schedule.date === dateJob.date
-  && schedule.hour === dateJob.hour
-  && schedule.minute === dateJob.minute);
+  && (schedule.hour === dateJob.hour));
   return coincidenceTime;
 }
 
